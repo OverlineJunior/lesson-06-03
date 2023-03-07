@@ -12,7 +12,7 @@ typedef struct {
     MaybeInt elements[SET_SIZE];
 } IntSet;
 
-IntSet new_int_set(void) {
+IntSet intset_new(void) {
     IntSet int_set;
 
     return int_set;
