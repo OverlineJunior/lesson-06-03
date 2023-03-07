@@ -69,3 +69,21 @@ IntSet intset_remove(IntSet intset, int index) {
 
     return intset;
 }
+
+void intset_display(IntSet intset) {
+    printf("[");
+
+    for (int i = 0; i < SET_SIZE; i++) {
+        MaybeInt maybeint = intset.elements[i];
+
+        if (!maybeint.is_some) break;
+
+        printf("%i", maybeint.value);
+
+        if (i + 1 != SET_SIZE && intset.elements[i + 1].is_some) {
+            printf(", ");
+        }
+    }
+
+    printf("]\n");
+}
