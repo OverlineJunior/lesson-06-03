@@ -1,0 +1,2 @@
+É uma biblioteca, ou seja, código auxiliário que pode ser
+utilizado por qualquer arquivo C.

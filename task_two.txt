@@ -1,0 +1,7 @@
+- Agrupar códigos relacionades, aumentando a coesão;
+- Separar código auxiliário do código principal, expulsando
+  a complexidade para arquivos diferentes;
+- Maior velocidade de programação: como bibliotecas podem
+  ser utilizadas por qualquer arquivo C, a escrita dela só
+  precisa acontecer uma única vez;
+- Entre outras vantagens.
