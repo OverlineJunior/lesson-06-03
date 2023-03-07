@@ -65,6 +65,12 @@ IntSet intset_new(void) {
     return int_set;
 }
 
+IntSet intset_remove(IntSet intset, int index) {
+    intset.elements[index] = maybeint_none();
+
+    return intset_swap_down(intset, index);
+}
+
 IntSet intset_push(IntSet intset, int n) {
     MaybeInt index = maybeint_first_none_index(intset.elements, SET_SIZE);
 
@@ -77,10 +83,11 @@ IntSet intset_push(IntSet intset, int n) {
     return intset;
 }
 
-IntSet intset_remove(IntSet intset, int index) {
-    intset.elements[index] = maybeint_none();
+IntSet intset_pop(IntSet intset) {
+    MaybeInt first_none_i = maybeint_first_none_index(intset.elements, SET_SIZE);
+    int index = first_none_i.is_some ? first_none_i.value - 1 : SET_SIZE - 1;
 
-    return intset_swap_down(intset, index);
+    return intset_remove(intset, index);
 }
 
 void intset_display(IntSet intset) {

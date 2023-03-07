@@ -10,6 +10,7 @@ int main(void) {
     intset = intset_push(intset, 5);
 
     intset = intset_remove(intset, 2);
+    intset = intset_pop(intset);
 
     intset_display(intset);
 
