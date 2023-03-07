@@ -122,9 +122,9 @@ IntSet intset_remove(IntSet intset, int n) {
         intset.elements[index.value] = maybeint_none();
 
         return intset_swap_down(intset, index.value);
-    } else {
-        exit(EXIT_FAILURE);
     }
+
+    return intset;
 }
 
 void intset_display(IntSet intset) {
