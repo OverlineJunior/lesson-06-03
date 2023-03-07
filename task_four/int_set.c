@@ -66,4 +66,6 @@ IntSet intset_push(IntSet intset, int n) {
 // TODO: Shift elements after index to the left.
 IntSet intset_remove(IntSet intset, int index) {
     intset.elements[index] = maybeint_none();
+
+    return intset;
 }
