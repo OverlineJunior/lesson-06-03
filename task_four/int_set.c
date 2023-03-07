@@ -142,6 +142,22 @@ IntSet intset_union(IntSet intset_a, IntSet intset_b) {
     return intset_a;
 }
 
+IntSet intset_intersection(IntSet intset_a, IntSet intset_b) {
+    IntSet intersec = intset_new();
+
+    for (int i = 0; i < SET_SIZE; i++) {
+        MaybeInt n = intset_a.elements[i];
+
+        if (!n.is_some) break;
+
+        if (intset_has(intset_b, n.value)) {
+            intersec = intset_push(intersec, n.value);
+        }
+    }
+
+    return intersec;
+}
+
 void intset_display(IntSet intset) {
     printf("[");
 
