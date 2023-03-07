@@ -158,6 +158,18 @@ IntSet intset_intersection(IntSet intset_a, IntSet intset_b) {
     return intersec;
 }
 
+IntSet intset_difference(IntSet intset_a, IntSet intset_b) {
+    for (int i = 0; i < SET_SIZE; i++) {
+        MaybeInt n = intset_b.elements[i];
+
+        if (!n.is_some) break;
+
+        intset_a = intset_remove(intset_a, n.value);
+    }
+
+    return intset_a;
+}
+
 void intset_display(IntSet intset) {
     printf("[");
 
