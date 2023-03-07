@@ -130,6 +130,18 @@ IntSet intset_remove(IntSet intset, int n) {
     return intset;
 }
 
+IntSet intset_union(IntSet intset_a, IntSet intset_b) {
+    for (int i = 0; i < SET_SIZE; i++) {
+        MaybeInt n = intset_b.elements[i];
+
+        if (n.is_some && !intset_has(intset_a, n.value)) {
+            intset_a = intset_push(intset_a, n.value);
+        }
+    }
+
+    return intset_a;
+}
+
 void intset_display(IntSet intset) {
     printf("[");
 

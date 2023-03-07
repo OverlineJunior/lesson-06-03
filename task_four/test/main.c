@@ -2,16 +2,17 @@
 #include "../int_set.h"
 
 int main(void) {
-    IntSet intset = intset_new();
-    intset = intset_push(intset, 1);
-    intset = intset_push(intset, 4);
-    intset = intset_push(intset, 2);
-    intset = intset_push(intset, 5);
-    intset = intset_push(intset, 3);
+    IntSet intset_a = intset_new();
+    intset_a = intset_push(intset_a, 4);
+    intset_a = intset_push(intset_a, 1);
 
-    intset = intset_remove(intset, 2);
+    IntSet intset_b = intset_new();
+    intset_b = intset_push(intset_b, 3);
+    intset_b = intset_push(intset_b, 5);
+    intset_b = intset_push(intset_b, 2);
 
-    intset_display(intset);
+    IntSet intset_c = intset_union(intset_a, intset_b);
+    intset_display(intset_c);
 
     return 0;
 }
