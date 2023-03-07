@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 #define SET_SIZE 64
@@ -66,6 +67,14 @@ IntSet intset_new(void) {
 }
 
 IntSet intset_remove(IntSet intset, int index) {
+    if (index >= SET_SIZE) {
+        printf(
+            "Nao e possivel entrar com indice acima de %i\n",
+            SET_SIZE
+        );
+        exit(EXIT_FAILURE);
+    }
+
     intset.elements[index] = maybeint_none();
 
     return intset_swap_down(intset, index);
