@@ -45,6 +45,20 @@ MaybeInt maybeint_first_none_index(MaybeInt arr[], int size) {
     return res;
 }
 
+void maybeint_swap(MaybeInt *a, MaybeInt *b) {
+    MaybeInt aux = *a;
+    *a = *b;
+    *b = aux;
+}
+
+IntSet intset_swap_down(IntSet intset, int start_index) {
+    for (int i = start_index; i < SET_SIZE - 1; i++) {
+        maybeint_swap(&intset.elements[i], &intset.elements[i + 1]);
+    }
+
+    return intset;
+}
+
 IntSet intset_new(void) {
     IntSet int_set = {};
 
@@ -63,11 +77,10 @@ IntSet intset_push(IntSet intset, int n) {
     return intset;
 }
 
-// TODO: Shift elements after index to the left.
 IntSet intset_remove(IntSet intset, int index) {
     intset.elements[index] = maybeint_none();
 
-    return intset;
+    return intset_swap_down(intset, index);
 }
 
 void intset_display(IntSet intset) {
