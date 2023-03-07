@@ -95,6 +95,9 @@ IntSet intset_new(void) {
     return int_set;
 }
 
+bool intset_has(IntSet intset, int n) {
+    return intset_index_of(intset, n).is_some;
+}
 
 IntSet intset_push(IntSet intset, int n) {
     if (intset_index_of(intset, n).is_some) {

@@ -12,6 +12,7 @@ typedef struct {
 } IntSet;
 
 IntSet intset_new(void);
+bool intset_has(IntSet intset, int n);
 IntSet intset_push(IntSet intset, int n);
 IntSet intset_remove(IntSet intset, int n);
 void intset_display(IntSet intset);
