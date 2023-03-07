@@ -12,7 +12,6 @@ typedef struct {
 } IntSet;
 
 IntSet intset_new(void);
-IntSet intset_remove(IntSet intset, int index);
 IntSet intset_push(IntSet intset, int n);
-IntSet intset_pop(IntSet intset);
+IntSet intset_remove(IntSet intset, int n);
 void intset_display(IntSet intset);

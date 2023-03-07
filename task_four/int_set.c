@@ -52,6 +52,35 @@ void maybeint_swap(MaybeInt *a, MaybeInt *b) {
     *b = aux;
 }
 
+void maybeint_sort(MaybeInt *arr, int size) {
+    for (int i = 0; i < size - 1; i++) {
+        if (!arr[i].is_some) break;
+
+        for (int j = i + 1; j < size; j++) {
+            if (!arr[j].is_some) break;
+
+            if (arr[i].value > arr[j].value) {
+                maybeint_swap(&arr[i], &arr[j]);
+            }
+        }
+    }
+}
+
+MaybeInt intset_index_of(IntSet intset, int n) {
+    MaybeInt index = maybeint_none();
+
+    for (int i = 0; i < SET_SIZE; i++) {
+        if (!intset.elements[i].is_some || intset.elements[i].value != n) continue;
+
+        index.is_some = true;
+        index.value = i;
+
+        break;
+    }
+
+    return index;
+}
+
 IntSet intset_swap_down(IntSet intset, int start_index) {
     for (int i = start_index; i < SET_SIZE - 1; i++) {
         maybeint_swap(&intset.elements[i], &intset.elements[i + 1]);
@@ -66,36 +95,7 @@ IntSet intset_new(void) {
     return int_set;
 }
 
-MaybeInt intset_index_of(IntSet intset, int n) {
-    MaybeInt index = maybeint_none();
 
-    for (int i = 0; i < SET_SIZE; i++) {
-        if (!intset.elements[i].is_some || intset.elements[i].value != n) continue;
-
-        index.is_some = true;
-        index.value = n;
-
-        break;
-    }
-
-    return index;
-}
-
-IntSet intset_remove(IntSet intset, int index) {
-    if (index >= SET_SIZE) {
-        printf(
-            "Nao e possivel entrar com indice acima de %i\n",
-            SET_SIZE
-        );
-        exit(EXIT_FAILURE);
-    }
-
-    intset.elements[index] = maybeint_none();
-
-    return intset_swap_down(intset, index);
-}
-
-// TODO: Automatically sort elements on push.
 IntSet intset_push(IntSet intset, int n) {
     if (intset_index_of(intset, n).is_some) {
         printf("%i ja esta presente no set\n", n);
@@ -110,14 +110,21 @@ IntSet intset_push(IntSet intset, int n) {
         printf("Nao e possivel exceder o tamanho de %i\n", SET_SIZE);
     }
 
+    maybeint_sort(intset.elements, SET_SIZE);
+
     return intset;
 }
 
-IntSet intset_pop(IntSet intset) {
-    MaybeInt first_none_i = maybeint_first_none_index(intset.elements, SET_SIZE);
-    int index = first_none_i.is_some ? first_none_i.value - 1 : SET_SIZE - 1;
+IntSet intset_remove(IntSet intset, int n) {
+    MaybeInt index = intset_index_of(intset, n);
 
-    return intset_remove(intset, index);
+    if (index.is_some) {
+        intset.elements[index.value] = maybeint_none();
+
+        return intset_swap_down(intset, index.value);
+    } else {
+        exit(EXIT_FAILURE);
+    }
 }
 
 void intset_display(IntSet intset) {
