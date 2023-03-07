@@ -66,6 +66,21 @@ IntSet intset_new(void) {
     return int_set;
 }
 
+MaybeInt intset_index_of(IntSet intset, int n) {
+    MaybeInt index = maybeint_none();
+
+    for (int i = 0; i < SET_SIZE; i++) {
+        if (!intset.elements[i].is_some || intset.elements[i].value != n) continue;
+
+        index.is_some = true;
+        index.value = n;
+
+        break;
+    }
+
+    return index;
+}
+
 IntSet intset_remove(IntSet intset, int index) {
     if (index >= SET_SIZE) {
         printf(
@@ -80,7 +95,13 @@ IntSet intset_remove(IntSet intset, int index) {
     return intset_swap_down(intset, index);
 }
 
+// TODO: Automatically sort elements on push.
 IntSet intset_push(IntSet intset, int n) {
+    if (intset_index_of(intset, n).is_some) {
+        printf("%i ja esta presente no set\n", n);
+        exit(EXIT_FAILURE);
+    }
+
     MaybeInt index = maybeint_first_none_index(intset.elements, SET_SIZE);
 
     if (index.is_some) {
