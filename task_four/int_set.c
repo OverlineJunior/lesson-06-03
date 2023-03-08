@@ -113,6 +113,12 @@ bool intset_is_empty(IntSet intset) {
     return !intset.elements[0].is_some;
 }
 
+int intset_size(IntSet intset) {
+    MaybeInt first_none_i = maybeint_first_none_index(intset.elements, SET_SIZE);
+
+    return first_none_i.is_some ? first_none_i.value : SET_SIZE;
+}
+
 IntSet intset_push(IntSet intset, int n) {
     if (intset_index_of(intset, n).is_some) {
         printf("%i ja esta presente no set\n", n);
