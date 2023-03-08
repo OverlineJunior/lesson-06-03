@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "../int_set.h"
 
+// NOTE: Não testa a biblioteca inteira.
 int main(void) {
     IntSet intset_a = intset_new();
     intset_a = intset_push(intset_a, 4);
