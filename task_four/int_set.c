@@ -99,7 +99,7 @@ bool intset_has(IntSet intset, int n) {
     return intset_index_of(intset, n).is_some;
 }
 
-bool intset_equal(IntSet intset_a, IntSet intset_b) {
+bool intset_are_equal(IntSet intset_a, IntSet intset_b) {
     for (int i = 0; i < SET_SIZE; i++) {
         if (intset_a.elements[i].value != intset_b.elements[i].value) {
             return false;
