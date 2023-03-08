@@ -109,6 +109,10 @@ bool intset_are_equal(IntSet intset_a, IntSet intset_b) {
     return true;
 }
 
+bool intset_is_empty(IntSet intset) {
+    return !intset.elements[0].is_some;
+}
+
 IntSet intset_push(IntSet intset, int n) {
     if (intset_index_of(intset, n).is_some) {
         printf("%i ja esta presente no set\n", n);

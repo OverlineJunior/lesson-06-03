@@ -14,6 +14,7 @@ typedef struct {
 IntSet intset_new(void);
 bool intset_has(IntSet intset, int n);
 bool intset_are_equal(IntSet intset_a, IntSet intset_b);
+bool intset_is_empty(IntSet intset);
 IntSet intset_push(IntSet intset, int n);
 IntSet intset_remove(IntSet intset, int n);
 IntSet intset_union(IntSet intset_a, IntSet intset_b);
