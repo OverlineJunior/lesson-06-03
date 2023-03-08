@@ -18,4 +18,5 @@ IntSet intset_remove(IntSet intset, int n);
 IntSet intset_union(IntSet intset_a, IntSet intset_b);
 IntSet intset_intersection(IntSet intset_a, IntSet intset_b);
 IntSet intset_difference(IntSet intset_a, IntSet intset_b);
+MaybeInt intset_highest_number(IntSet intset);
 void intset_display(IntSet intset);

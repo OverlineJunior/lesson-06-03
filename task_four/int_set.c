@@ -170,6 +170,20 @@ IntSet intset_difference(IntSet intset_a, IntSet intset_b) {
     return intset_a;
 }
 
+MaybeInt intset_highest_number(IntSet intset) {
+    MaybeInt highest = intset.elements[0];
+
+    for (int i = 1; i < SET_SIZE; i++) {
+        MaybeInt n = intset.elements[i];
+
+        if (n.is_some && n.value > highest.value) {
+            highest = n;
+        }
+    }
+
+    return highest;
+}
+
 void intset_display(IntSet intset) {
     printf("[");
 
