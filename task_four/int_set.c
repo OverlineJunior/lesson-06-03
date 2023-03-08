@@ -184,6 +184,20 @@ MaybeInt intset_highest_number(IntSet intset) {
     return highest;
 }
 
+MaybeInt intset_lowest_number(IntSet intset) {
+    MaybeInt lowest = intset.elements[0];
+
+    for (int i = 0; i < SET_SIZE; i++) {
+        MaybeInt n = intset.elements[i];
+
+        if (n.is_some && n.value < lowest.value) {
+            lowest = n;
+        }
+    }
+
+    return lowest;
+}
+
 void intset_display(IntSet intset) {
     printf("[");
 
